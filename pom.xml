@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.sf.arsmachina</groupId>
+	<artifactId>generic-authentication-hibernate</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0</version>
+	<name>
+		generic-authentication DAOs implementation using Hibernate.
+	</name>
+	<inceptionYear>2008</inceptionYear>
+	<url>http://ars-machina.sourceforge.net/generic-authentication-hibernate</url>
+	<parent>
+		<groupId>net.sf.arsmachina</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0</version>
+		<relativePath>../parent/pom.xml</relativePath>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.arsmachina</groupId>
+			<artifactId>generic-authentication</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.arsmachina</groupId>
+			<artifactId>generic-dao-hibernate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.javaconfig</groupId>
+			<artifactId>spring-javaconfig</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<classifier>jdk15</classifier>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
