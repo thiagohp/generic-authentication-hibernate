@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package net.sf.arsmachina.authentication.dao.hibernate.ioc;
+package br.com.arsmachina.authentication.dao.hibernate.ioc;
 
 import net.sf.arsmachina.authentication.controller.PasswordEncrypter;
 import net.sf.arsmachina.authentication.controller.PermissionController;
@@ -24,10 +24,6 @@ import net.sf.arsmachina.authentication.controller.impl.UserControllerImpl;
 import net.sf.arsmachina.authentication.dao.PermissionDAO;
 import net.sf.arsmachina.authentication.dao.PermissionGroupDAO;
 import net.sf.arsmachina.authentication.dao.UserDAO;
-import net.sf.arsmachina.authentication.dao.hibernate.PermissionDAOImpl;
-import net.sf.arsmachina.authentication.dao.hibernate.PermissionGroupDAOImpl;
-import net.sf.arsmachina.authentication.dao.hibernate.UserDAOImpl;
-import net.sf.arsmachina.dao.hibernate.spring.PersistenceConfiguration;
 
 import org.hibernate.SessionFactory;
 import org.springframework.config.java.annotation.Bean;
@@ -35,6 +31,11 @@ import org.springframework.config.java.annotation.Configuration;
 import org.springframework.config.java.annotation.ExternalBean;
 import org.springframework.config.java.annotation.Import;
 import org.springframework.config.java.annotation.Lazy;
+
+import br.com.arsmachina.authentication.dao.hibernate.PermissionDAOImpl;
+import br.com.arsmachina.authentication.dao.hibernate.PermissionGroupDAOImpl;
+import br.com.arsmachina.authentication.dao.hibernate.UserDAOImpl;
+import br.com.arsmachina.dao.hibernate.ioc.PersistenceConfiguration;
 
 /**
  * Spring JavaConfig configuration class that declares beans provided by

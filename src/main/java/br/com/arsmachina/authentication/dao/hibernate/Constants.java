@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package net.sf.arsmachina.authentication.dao.hibernate;
+package br.com.arsmachina.authentication.dao.hibernate;
 
-import net.sf.arsmachina.dao.SortCriterion;
+import br.com.arsmachina.dao.SortCriterion;
 
 
 /**

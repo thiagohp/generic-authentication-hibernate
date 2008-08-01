@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package net.sf.arsmachina.authentication.dao.hibernate;
+package br.com.arsmachina.authentication.dao.hibernate;
 
 import java.util.List;
 
@@ -20,14 +20,15 @@ import net.sf.arsmachina.authentication.controller.PasswordEncrypter;
 import net.sf.arsmachina.authentication.dao.UserDAO;
 import net.sf.arsmachina.authentication.entity.Role;
 import net.sf.arsmachina.authentication.entity.User;
-import net.sf.arsmachina.dao.SortCriterion;
-import net.sf.arsmachina.dao.hibernate.GenericDAOImpl;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+
+import br.com.arsmachina.dao.SortCriterion;
+import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
 
 /**
  * {@link UserDAO} implementation using Hibernate
@@ -95,7 +96,7 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 	/**
 	 * Returns {@link Constants#ASCENDING_NAME_SORT_CRITERIA}.
 	 * 
-	 * @see net.sf.arsmachina.dao.hibernate.GenericDAOImpl#getDefaultSortCriteria()
+	 * @see br.com.arsmachina.dao.hibernate.GenericDAOImpl#getDefaultSortCriteria()
 	 */
 	@Override
 	public SortCriterion[] getDefaultSortCriteria() {
