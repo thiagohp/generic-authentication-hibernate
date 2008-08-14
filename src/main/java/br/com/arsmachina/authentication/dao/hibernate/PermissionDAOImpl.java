@@ -18,11 +18,11 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.arsmachina.authentication.dao.PermissionDAO;
+import br.com.arsmachina.authentication.entity.Permission;
 import br.com.arsmachina.dao.SortCriterion;
 import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
 
-import net.sf.arsmachina.authentication.dao.PermissionDAO;
-import net.sf.arsmachina.authentication.entity.Permission;
 
 /**
  * {@link PermissionDAO} implementation using Hibernate
@@ -51,7 +51,7 @@ public class PermissionDAOImpl extends GenericDAOImpl<Permission, Integer> imple
 	}
 
 	/**
-	 * @see net.sf.arsmachina.authentication.dao.PermissionDAO#findByName(java.lang.String)
+	 * @see br.com.arsmachina.authentication.dao.PermissionDAO#findByName(java.lang.String)
 	 */
 	public Permission findByName(String name) {
 		

@@ -14,13 +14,13 @@
 
 package br.com.arsmachina.authentication.dao.hibernate;
 
-import net.sf.arsmachina.authentication.dao.PermissionGroupDAO;
-import net.sf.arsmachina.authentication.entity.PermissionGroup;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.arsmachina.authentication.dao.PermissionGroupDAO;
+import br.com.arsmachina.authentication.entity.PermissionGroup;
 import br.com.arsmachina.dao.SortCriterion;
 import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
 
@@ -42,7 +42,7 @@ public class PermissionGroupDAOImpl extends GenericDAOImpl<PermissionGroup, Inte
 	}
 
 	/**
-	 * @see net.sf.arsmachina.authentication.dao.PermissionGroupDAO#findByName(java.lang.String)
+	 * @see br.com.arsmachina.authentication.dao.PermissionGroupDAO#findByName(java.lang.String)
 	 */
 	public PermissionGroup findByName(String name) {
 

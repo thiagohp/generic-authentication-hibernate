@@ -16,17 +16,16 @@ package br.com.arsmachina.authentication.dao.hibernate;
 
 import java.util.List;
 
-import net.sf.arsmachina.authentication.controller.PasswordEncrypter;
-import net.sf.arsmachina.authentication.dao.UserDAO;
-import net.sf.arsmachina.authentication.entity.Role;
-import net.sf.arsmachina.authentication.entity.User;
-
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.arsmachina.authentication.controller.PasswordEncrypter;
+import br.com.arsmachina.authentication.dao.UserDAO;
+import br.com.arsmachina.authentication.entity.Role;
+import br.com.arsmachina.authentication.entity.User;
 import br.com.arsmachina.dao.SortCriterion;
 import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
 
@@ -56,7 +55,7 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 	}
 
 	/**
-	 * @see net.sf.arsmachina.authentication.dao.UserDAO#findByLoginAndPassword(java.lang.String,
+	 * @see br.com.arsmachina.authentication.dao.UserDAO#findByLoginAndPassword(java.lang.String,
 	 * java.lang.String)
 	 */
 	public User findByLoginAndPassword(String login, String password) {
@@ -72,7 +71,7 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 	}
 
 	/**
-	 * @see net.sf.arsmachina.authentication.dao.UserDAO#findByLogin(java.lang.String)
+	 * @see br.com.arsmachina.authentication.dao.UserDAO#findByLogin(java.lang.String)
 	 */
 	public User findByLogin(String login) {
 
