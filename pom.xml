@@ -6,16 +6,19 @@
 	<groupId>br.com.arsmachina</groupId>
 	<artifactId>generic-authentication-hibernate</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0</version>
+	<version>0.9</version>
 	<name>
-		generic-authentication DAOs implementation using Hibernate.
+		Generic Authentication-Hibernate.
 	</name>
+	<description>
+		Generic Authentication implementation using Hibernate.
+	</description>
 	<inceptionYear>2008</inceptionYear>
-	<url>http://ars-machina.sourceforge.net/generic-authentication-hibernate</url>
+	<url>http://www.arsmachina.com.br/project/generic-authentication-hibernate</url>
 	<parent>
 		<groupId>br.com.arsmachina</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0</version>
+		<version>0.9</version>
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 	<dependencies>
