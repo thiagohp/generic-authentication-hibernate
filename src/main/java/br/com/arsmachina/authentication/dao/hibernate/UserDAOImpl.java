@@ -32,7 +32,7 @@ import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
 /**
  * {@link UserDAO} implementation using Hibernate
  * 
- * @author Thiago H. de Paula Figueiredo (ThiagoHP)
+ * @author Thiago H. de Paula Figueiredo
  */
 public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDAO {
 

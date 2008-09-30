@@ -41,7 +41,7 @@ import br.com.arsmachina.dao.hibernate.ioc.PersistenceConfiguration;
  * Spring JavaConfig configuration class that declares beans provided by
  * generic-authentication-hibernate.
  * 
- * @author Thiago H. de Paula Figueiredo (ThiagoHP)
+ * @author Thiago H. de Paula Figueiredo
  */
 @Configuration(defaultLazy = Lazy.TRUE)
 @Import( { PersistenceConfiguration.class })

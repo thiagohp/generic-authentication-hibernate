@@ -14,7 +14,7 @@
 		Generic Authentication implementation using Hibernate.
 	</description>
 	<inceptionYear>2008</inceptionYear>
-	<url>http://www.arsmachina.com.br/project/generic-authentication-hibernate</url>
+	<url>http://www.arsmachina.com.br/project/genericauthenticationhibernate</url>
 	<parent>
 		<groupId>br.com.arsmachina</groupId>
 		<artifactId>parent</artifactId>

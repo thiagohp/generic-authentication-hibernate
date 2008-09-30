@@ -20,7 +20,7 @@ import br.com.arsmachina.dao.SortCriterion;
 /**
  * Utility class for declaring commons constants.
  * 
- * @author Thiago H. de Paula Figueiredo (ThiagoHP)
+ * @author Thiago H. de Paula Figueiredo
  */
 public class Constants {
 

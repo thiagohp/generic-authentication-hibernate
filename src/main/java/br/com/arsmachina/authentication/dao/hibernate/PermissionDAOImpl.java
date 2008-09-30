@@ -27,7 +27,7 @@ import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
 /**
  * {@link PermissionDAO} implementation using Hibernate
  * 
- * @author Thiago H. de Paula Figueiredo (ThiagoHP)
+ * @author Thiago H. de Paula Figueiredo
  */
 public class PermissionDAOImpl extends GenericDAOImpl<Permission, Integer> implements PermissionDAO {
 
