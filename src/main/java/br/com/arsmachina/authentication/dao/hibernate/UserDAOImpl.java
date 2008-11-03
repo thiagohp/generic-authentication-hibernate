@@ -16,11 +16,9 @@ package br.com.arsmachina.authentication.dao.hibernate;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 
 import br.com.arsmachina.authentication.controller.PasswordEncrypter;
 import br.com.arsmachina.authentication.dao.UserDAO;
@@ -55,15 +53,19 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 	}
 
 	/**
+	 * Finds the user with a given login and password. The login search is case-insensitive.
+	 * 
 	 * @see br.com.arsmachina.authentication.dao.UserDAO#findByLoginAndPassword(java.lang.String,
 	 * java.lang.String)
 	 */
 	public User findByLoginAndPassword(String login, String password) {
 
 		Session session = getSession();
-		Query query = session.createQuery("from User where login = :login and password = :password");
 
-		query.setParameter("login", login);
+		Query query = session.createQuery("from User where lowercase(login) = :login and "
+				+ "password = :password");
+
+		query.setParameter("login", login.toLowerCase());
 		query.setParameter("password", passwordEncrypter.encrypt(password));
 
 		return (User) query.uniqueResult();
@@ -71,14 +73,18 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 	}
 
 	/**
+	 * Finds an user by its login. The search is case-insensitive.
+	 * 
 	 * @see br.com.arsmachina.authentication.dao.UserDAO#findByLogin(java.lang.String)
 	 */
 	public User findByLogin(String login) {
 
-		Criteria criteria = createCriteria();
-		criteria.add(Restrictions.eq("login", login));
+		Session session = getSession();
 
-		return (User) criteria.uniqueResult();
+		Query query = session.createQuery("from User where lower(login) = :login");
+		query.setParameter("login", login.toLowerCase());
+
+		return (User) query.uniqueResult();
 
 	}
 
@@ -100,6 +106,18 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 	@Override
 	public SortCriterion[] getDefaultSortCriteria() {
 		return Constants.ASCENDING_NAME_SORT_CRITERIA;
+	}
+
+	public boolean hasUserWithLogin(String login) {
+
+		Query query = getSession().createQuery(
+				"select count (distinct u) from User u where lower(login) = :login");
+		query.setParameter("login", login.toLowerCase());
+
+		Long result = (Long) query.uniqueResult();
+
+		return result > 0;
+
 	}
 
 }
