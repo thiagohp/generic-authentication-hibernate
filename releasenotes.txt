@@ -1,0 +1,6 @@
+1.0
+* Added method hasUserWithLogin(String) to UserDAO and UserController.
+* Improved documentation.
+
+0.9
+* Initial version.
