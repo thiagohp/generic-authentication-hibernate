@@ -32,7 +32,8 @@ import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
  * 
  * @author Thiago H. de Paula Figueiredo
  */
-public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDAO {
+public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements
+		UserDAO {
 
 	private PasswordEncrypter passwordEncrypter;
 
@@ -42,28 +43,32 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 	 * @param sessionFactory a {@link SessionFactory}. It cannot be null.
 	 * @param passwordEncrypter a {@link PasswordEncrypter}. It cannot be null.
 	 */
-	public UserDAOImpl(SessionFactory sessionFactory, PasswordEncrypter passwordEncrypter) {
+	public UserDAOImpl(SessionFactory sessionFactory,
+			PasswordEncrypter passwordEncrypter) {
 
 		super(sessionFactory);
 
 		if (passwordEncrypter == null) {
-			throw new IllegalArgumentException("Parameter passwordEncrypter cannot be null");
+			throw new IllegalArgumentException(
+					"Parameter passwordEncrypter cannot be null");
 		}
 
 	}
 
 	/**
-	 * Finds the user with a given login and password. The login search is case-insensitive.
+	 * Finds the user with a given login and password. The login search is
+	 * case-insensitive.
 	 * 
 	 * @see br.com.arsmachina.authentication.dao.UserDAO#findByLoginAndPassword(java.lang.String,
-	 * java.lang.String)
+	 *      java.lang.String)
 	 */
 	public User findByLoginAndPassword(String login, String password) {
 
 		Session session = getSession();
 
-		Query query = session.createQuery("from User where lowercase(login) = :login and "
-				+ "password = :password");
+		Query query =
+			session.createQuery("from User where lowercase(login) = :login and "
+					+ "password = :password");
 
 		query.setParameter("login", login.toLowerCase());
 		query.setParameter("password", passwordEncrypter.encrypt(password));
@@ -81,18 +86,54 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 
 		Session session = getSession();
 
-		Query query = session.createQuery("from User where lower(login) = :login");
+		Query query =
+			session.createQuery("from User where lower(login) = :login");
 		query.setParameter("login", login.toLowerCase());
 
 		return (User) query.uniqueResult();
 
 	}
+	
+	public User loadForAuthentication(String login) {
+
+		Session session = getSession();
+
+		Query query =
+			session.createQuery("select u from User u left join fetch u.permissionGroups " +
+					"where lower(u.login) = :login");
+		query.setParameter("login", login.toLowerCase());
+
+		final User user = (User) query.uniqueResult();
+		
+		// force the loading of the user's permissions
+		user.getPermissions();
+		
+		return user;
+		
+	}
+	
+	public User loadEverything(String login) {
+
+		Session session = getSession();
+		session.beginTransaction();
+
+		final User user = loadForAuthentication(login);
+		
+		// force the loading of the user's roles
+		user.getRoles().size();
+		
+		session.getTransaction().commit();
+		
+		return user;
+		
+	}
 
 	@SuppressWarnings("unchecked")
 	public <T extends Role> List<User> findByRole(Class<T> roleClass) {
 
-		Query query = getSession().createQuery(
-				"select distinct(m.user) from Manager m order by m.user.login");
+		Query query =
+			getSession().createQuery(
+					"select distinct(m.user) from Manager m order by m.user.login");
 
 		return query.list();
 
@@ -110,8 +151,9 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
 
 	public boolean hasUserWithLogin(String login) {
 
-		Query query = getSession().createQuery(
-				"select count (distinct u) from User u where lower(login) = :login");
+		Query query =
+			getSession().createQuery(
+					"select count (distinct u) from User u where lower(login) = :login");
 		query.setParameter("login", login.toLowerCase());
 
 		Long result = (Long) query.uniqueResult();

@@ -6,7 +6,7 @@
 	<groupId>br.com.arsmachina</groupId>
 	<artifactId>generic-authentication-hibernate</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0</version>
+	<version>1.1</version>
 	<name>
 		Generic Authentication-Hibernate.
 	</name>
@@ -18,7 +18,7 @@
 	<parent>
 		<groupId>br.com.arsmachina</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0</version>
+		<version>1.1</version>
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 	<dependencies>

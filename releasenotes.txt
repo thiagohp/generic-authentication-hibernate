@@ -1,3 +1,7 @@
+1.1
+* Improved user loading handling.
+* Updated parent dependency version to 1.1.
+
 1.0
 * Added method hasUserWithLogin(String) to UserDAO and UserController.
 * Improved documentation.
