@@ -114,15 +114,10 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements
 	
 	public User loadEverything(String login) {
 
-		Session session = getSession();
-		session.beginTransaction();
-
 		final User user = loadForAuthentication(login);
 		
 		// force the loading of the user's roles
 		user.getRoles().size();
-		
-		session.getTransaction().commit();
 		
 		return user;
 		
