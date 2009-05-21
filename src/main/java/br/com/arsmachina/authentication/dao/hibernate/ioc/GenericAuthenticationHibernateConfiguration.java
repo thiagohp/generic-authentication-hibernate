@@ -26,15 +26,19 @@ import br.com.arsmachina.authentication.controller.PasswordEncrypter;
 import br.com.arsmachina.authentication.controller.PermissionController;
 import br.com.arsmachina.authentication.controller.PermissionGroupController;
 import br.com.arsmachina.authentication.controller.UserController;
+import br.com.arsmachina.authentication.controller.UserGroupController;
 import br.com.arsmachina.authentication.controller.impl.PermissionControllerImpl;
 import br.com.arsmachina.authentication.controller.impl.PermissionGroupControllerImpl;
 import br.com.arsmachina.authentication.controller.impl.UserControllerImpl;
+import br.com.arsmachina.authentication.controller.impl.UserGroupControllerImpl;
 import br.com.arsmachina.authentication.dao.PermissionDAO;
 import br.com.arsmachina.authentication.dao.PermissionGroupDAO;
 import br.com.arsmachina.authentication.dao.UserDAO;
+import br.com.arsmachina.authentication.dao.UserGroupDAO;
 import br.com.arsmachina.authentication.dao.hibernate.PermissionDAOImpl;
 import br.com.arsmachina.authentication.dao.hibernate.PermissionGroupDAOImpl;
 import br.com.arsmachina.authentication.dao.hibernate.UserDAOImpl;
+import br.com.arsmachina.authentication.dao.hibernate.UserGroupDAOImpl;
 import br.com.arsmachina.dao.hibernate.ioc.PersistenceConfiguration;
 
 /**
@@ -76,6 +80,16 @@ public class GenericAuthenticationHibernateConfiguration {
 	@Bean
 	public PermissionGroupController permissionGroupController() {
 		return new PermissionGroupControllerImpl(permissionGroupDAO());
+	}
+
+	@Bean
+	public UserGroupDAO userGroupDAO() {
+		return new UserGroupDAOImpl(sessionFactory());
+	}
+
+	@Bean
+	public UserGroupController userGroupController() {
+		return new UserGroupControllerImpl(userGroupDAO());
 	}
 
 	@ExternalBean

@@ -14,47 +14,30 @@
 
 package br.com.arsmachina.authentication.dao.hibernate;
 
-
-import java.util.List;
-
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.arsmachina.authentication.dao.PermissionGroupDAO;
-import br.com.arsmachina.authentication.entity.PermissionGroup;
+import br.com.arsmachina.authentication.dao.UserGroupDAO;
 import br.com.arsmachina.authentication.entity.UserGroup;
 import br.com.arsmachina.dao.SortCriterion;
 import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
 
+
 /**
- * {@link PermissionGroupDAO} implementation using Hibernate.
+ * {@link UserGroupDAO} implementation using Hibernate
  * 
  * @author Thiago H. de Paula Figueiredo
  */
-public class PermissionGroupDAOImpl extends GenericDAOImpl<PermissionGroup, Integer> implements
-		PermissionGroupDAO {
+public class UserGroupDAOImpl extends GenericDAOImpl<UserGroup, Integer> implements UserGroupDAO {
 
 	/**
 	 * Single constructor of this class.
 	 * 
 	 * @param sessionFactory a {@link SessionFactory}. It cannot be null.
 	 */
-	public PermissionGroupDAOImpl(SessionFactory sessionFactory) {
+	public UserGroupDAOImpl(SessionFactory sessionFactory) {
 		super(sessionFactory);
-	}
-
-	/**
-	 * @see br.com.arsmachina.authentication.dao.PermissionGroupDAO#findByName(java.lang.String)
-	 */
-	public PermissionGroup findByName(String name) {
-
-		final Criteria criteria = createCriteria();
-		criteria.add(Restrictions.eq("name", name));
-
-		return (PermissionGroup) criteria.uniqueResult();
-
 	}
 
 	/**
@@ -67,13 +50,15 @@ public class PermissionGroupDAOImpl extends GenericDAOImpl<PermissionGroup, Inte
 		return Constants.ASCENDING_NAME_SORT_CRITERIA;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<PermissionGroup> findByUserGroup(UserGroup userGroup) {
+	/**
+	 * @see br.com.arsmachina.authentication.dao.UserGroupDAO#findByName(java.lang.String)
+	 */
+	public UserGroup findByName(String name) {
 		
-		Query query = getSession().createQuery("from PermissionGroup where shared = true or owner = :owner");
-		query.setParameter("owner", userGroup);
+		final Criteria criteria = createCriteria();
+		criteria.add(Restrictions.eq("name", name));
 		
-		return query.list();
+		return (UserGroup) criteria.uniqueResult();
 		
 	}
 
