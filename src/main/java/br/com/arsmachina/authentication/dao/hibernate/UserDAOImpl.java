@@ -20,7 +20,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import br.com.arsmachina.authentication.controller.PasswordEncrypter;
 import br.com.arsmachina.authentication.dao.UserDAO;
 import br.com.arsmachina.authentication.entity.Role;
 import br.com.arsmachina.authentication.entity.User;
@@ -35,24 +34,13 @@ import br.com.arsmachina.dao.hibernate.GenericDAOImpl;
 public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements
 		UserDAO {
 
-	private PasswordEncrypter passwordEncrypter;
-
 	/**
 	 * Single constructor of this class.
 	 * 
 	 * @param sessionFactory a {@link SessionFactory}. It cannot be null.
-	 * @param passwordEncrypter a {@link PasswordEncrypter}. It cannot be null.
 	 */
-	public UserDAOImpl(SessionFactory sessionFactory,
-			PasswordEncrypter passwordEncrypter) {
-
+	public UserDAOImpl(SessionFactory sessionFactory) {
 		super(sessionFactory);
-
-		if (passwordEncrypter == null) {
-			throw new IllegalArgumentException(
-					"Parameter passwordEncrypter cannot be null");
-		}
-
 	}
 
 	/**
@@ -67,11 +55,11 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements
 		Session session = getSession();
 
 		Query query =
-			session.createQuery("from User where lowercase(login) = :login and "
+			session.createQuery("from User where lower(login) = :login and "
 					+ "password = :password");
 
 		query.setParameter("login", login.toLowerCase());
-		query.setParameter("password", passwordEncrypter.encrypt(password));
+		query.setParameter("password", password);
 
 		return (User) query.uniqueResult();
 

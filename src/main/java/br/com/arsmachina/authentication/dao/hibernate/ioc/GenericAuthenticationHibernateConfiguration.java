@@ -14,7 +14,6 @@
 
 package br.com.arsmachina.authentication.dao.hibernate.ioc;
 
-
 import org.hibernate.SessionFactory;
 import org.springframework.config.java.annotation.Bean;
 import org.springframework.config.java.annotation.Configuration;
@@ -22,7 +21,6 @@ import org.springframework.config.java.annotation.ExternalBean;
 import org.springframework.config.java.annotation.Import;
 import org.springframework.config.java.annotation.Lazy;
 
-import br.com.arsmachina.authentication.controller.PasswordEncrypter;
 import br.com.arsmachina.authentication.controller.PermissionController;
 import br.com.arsmachina.authentication.controller.PermissionGroupController;
 import br.com.arsmachina.authentication.controller.UserController;
@@ -39,6 +37,7 @@ import br.com.arsmachina.authentication.dao.hibernate.PermissionDAOImpl;
 import br.com.arsmachina.authentication.dao.hibernate.PermissionGroupDAOImpl;
 import br.com.arsmachina.authentication.dao.hibernate.UserDAOImpl;
 import br.com.arsmachina.authentication.dao.hibernate.UserGroupDAOImpl;
+import br.com.arsmachina.authentication.encryption.PasswordEncrypter;
 import br.com.arsmachina.dao.hibernate.ioc.PersistenceConfiguration;
 
 /**
@@ -53,7 +52,7 @@ public class GenericAuthenticationHibernateConfiguration {
 
 	@Bean
 	public UserDAO userDAO() {
-		return new UserDAOImpl(sessionFactory(), passwordEncrypter());
+		return new UserDAOImpl(sessionFactory());
 	}
 
 	@Bean(lazy = Lazy.FALSE)
