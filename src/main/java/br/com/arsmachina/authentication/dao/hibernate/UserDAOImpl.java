@@ -1,4 +1,4 @@
-// Copyright 2008 Thiago H. de Paula Figueiredo
+// Copyright 2008-2009 Thiago H. de Paula Figueiredo
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.arsmachina.authentication.dao.UserDAO;
 import br.com.arsmachina.authentication.entity.Role;
@@ -142,6 +143,36 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements
 		Long result = (Long) query.uniqueResult();
 
 		return result > 0;
+
+	}
+
+	@Transactional
+	public void markLoggedIn(User user) {
+		
+		if (user == null) {
+			throw new IllegalArgumentException("Parameter user cannot be null.");
+		}
+		
+		Query query = getSession().createQuery("update User set loggedIn = true where id = :id");
+		query.setInteger("id", user.getId());
+		query.executeUpdate();
+		
+		user.setLoggedIn(true);
+		
+	}
+
+	@Transactional
+	public void markLoggedOut(User user) {
+		
+		if (user == null) {
+			throw new IllegalArgumentException("Parameter user cannot be null.");
+		}
+		
+		Query query = getSession().createQuery("update User set loggedIn = false where id = :id");
+		query.setInteger("id", user.getId());
+		query.executeUpdate();
+
+		user.setLoggedIn(false);
 
 	}
 
